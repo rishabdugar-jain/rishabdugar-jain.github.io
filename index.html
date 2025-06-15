@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="copyrighted-site-verification" content="2caa5d42036068c2" />
+  <meta name="keywords"
+    content="Rishab Dugar, Software Developer, Gen AI Practitioner, Python, Java, C++, JavaScript, SQL, AWS, Generative AI, RAG, LangChain, Cloud, Automation" />
+  <meta name="description"
+    content="Rishab Dugar - Software Developer and Gen AI Practitioner. Explore my projects, skills, and experience." />
+  <title>Rishab Dugar | Portfolio</title>
+  <link href="https://fonts.cdnfonts.com/css/cascadia-mono" rel="stylesheet" />
+  <link rel="shortcut icon" href="diamond.ico" type="image/x-icon" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- YouTube video background -->
+  <div class="banner-video">
+    <iframe
+      src="https://www.youtube.com/embed/KDlk2wm4Vnw?autoplay=1&controls=0&showinfo=0&autohide=1&mute=1&loop=1&playlist=KDlk2wm4Vnw&start=300"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      width="100%"
+      height="100%"
+      style="pointer-events: none;">
+    </iframe>
+  </div>
+  <div class="container">
+
+    <div id="terminal">
+      <div class="controls">
+        <ul class="window-buttons">
+          <li id="close" aria-label="Close" style="background:#ff5f56;"></li>
+          <li id="minimize" aria-label="Minimize" style="background:#ffbd2e;"></li>
+          <li id="maximize" aria-label="Maximize" style="background:#27c93f;"></li>
+        </ul>
+      </div>
+      <div class="message">
+        <p>
+          Welcome to my Portfolio v2.0 !<br />Session based UUID:
+          <span class="session-userid"></span><br />Type
+          <span id="helper">"help" </span>to
+          see available commands. <br /><span id="case-sense">All Commands are case
+            insensitive.
+          </span>
+        </p>
+      </div>
+      <div id="insert" class="dynamic-content"></div>
+    </div>
+  </div>
+  <div class="maximize-terminal footer-on-exit">
+    <p>
+      <span>Restore <span>&UpArrowBar; </span></span>
+    </p>
+  </div>
+
+  <script type="module" src="main.js"></script>
+
+  <div class="footer center-footer">
+    <p>
+      Coded with
+      <span id="coded-with">&hearts; </span>by
+      <a target="_blank" rel="noopener" class="dev-credit"
+        href="https://www.linkedin.com/in/rishab-dugar/">@RishabDugar</a>
+    </p>
+  </div>
+  <button id="allowSoundBtn" class="allow-sound-btn">Allow Sound</button>
+  <script type="text/javascript">
+    const allowSoundBtn = document.getElementById('allowSoundBtn');
+    allowSoundBtn.addEventListener('click', function() {
+      const bgDiv = document.querySelector('.banner-video iframe');
+      if (bgDiv) {
+        let src = bgDiv.getAttribute('src');
+        src = src.replace('mute=1', 'mute=0');
+        bgDiv.setAttribute('src', src);
+      }
+      allowSoundBtn.style.display = 'none';
+    });
+  </script>
+</body>
+
+</html>

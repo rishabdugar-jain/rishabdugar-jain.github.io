@@ -33,24 +33,31 @@
   <div class="container">
 
     <div id="terminal">
-      <div class="controls">
-        <ul class="window-buttons">
-          <li id="close" aria-label="Close" style="background:#ff5f56;"></li>
-          <li id="minimize" aria-label="Minimize" style="background:#ffbd2e;"></li>
-          <li id="maximize" aria-label="Maximize" style="background:#27c93f;"></li>
-        </ul>
+      <div class="terminal-header">
+        <div class="controls">
+          <ul class="window-buttons">
+            <li id="close" aria-label="Close" style="background:#ff5f56;"></li>
+            <li id="minimize" aria-label="Minimize" style="background:#ffbd2e;"></li>
+            <li id="maximize" aria-label="Maximize" style="background:#27c93f;"></li>
+          </ul>
+        </div>
       </div>
-      <div class="message">
-        <p>
-          Welcome to my Portfolio v2.0 !<br />Session based UUID:
-          <span class="session-userid"></span><br />Type
-          <span id="helper">"help" </span>to
-          see available commands. <br /><span id="case-sense">All Commands are case
-            insensitive.
-          </span>
-        </p>
+      <div class="terminal-body">
+        <div class="message">
+          <p style="font-family: 'UnifrakturCook', monospace; line-height: 1.5;">
+            <span style="font-size: 1.1em;">
+              Namaste — you’ve stepped into the ChronoShell of Rishab Dugar
+            </span><br /><br />
+            <em style="color: #a0d8ef;">“Architect of Code | Forged in a Past That Never Rusts”</em><br /><br />
+            <span style="color:#27c93f;">Initializing Portfolio v2.0…</span> <span style="color: #27c93f;">[✔]</span><br /><br />
+            Session UUID: <span class="session-userid"></span><br /><br />
+            Type <span id="helper" style="color: #ffd700;">"help"</span> to summon the command list.<br />
+            <small id="case-sense" style="color: #27c93f;">(commands are <strong>case‑insensitive</strong>)</small><br /><br />
+          </p>
+        </div>
+        <div id="insert" class="dynamic-content"></div>
       </div>
-      <div id="insert" class="dynamic-content"></div>
+      <div class="terminal-footer"></div>
     </div>
   </div>
   <div class="maximize-terminal footer-on-exit">

@@ -10,7 +10,7 @@ export default class ShellComponent {
         shellTitle.classList.add("title");
         shellTitle.htmlFor = "command-input";
         shellTitle.innerHTML = `
-        <span style=\"color: #f5084f;\"><span class=\"arrow\">✓</span> guest</span>@rishabdugar $  `;
+        <span style=\"color: #f5084f;\"><span class=\"arrow\">⚜️</span>root</span>@rishabdugar $  `;
         const shellInput = document.createElement("input");
         shellInput.id = "command-input";
         shellInput.classList.add("command");
@@ -26,7 +26,7 @@ export default class ShellComponent {
         const shellTitle = document.createElement("label");
         shellTitle.classList.add("title");
         shellTitle.htmlFor = "command-input";
-        shellTitle.innerHTML = `\n        <span style=\"color: #f5084f;\"><span class=\"arrow-error\">✗</span> guest</span>@rishabdugar $  `;
+        shellTitle.innerHTML = `\n        <span style=\"color: #f5084f;\"><span class=\"arrow-error\">✗</span> user</span>@rishabdugar $  `;
         const shellInput = document.createElement("input");
         shellInput.id = "command-input";
         shellInput.classList.add("command");

@@ -45,6 +45,118 @@ window.addEventListener('DOMContentLoaded', () => {
     maximizeBox.classList.add('flip');
     userid.render(sessionId);
     shell.render();
+    // Disable right-click on terminal window
+    const terminal = document.getElementById('terminal');
+    if (terminal) {
+        terminal.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        // Disable copy, cut, paste
+        ['copy', 'cut', 'paste'].forEach(evt => {
+            terminal.addEventListener(evt, function(e) {
+                e.preventDefault();
+            });
+        });
+    }
+
+    // --- Linux-style sound popup logic ---
+    const soundPopup = document.getElementById('sound-popup');
+    const soundYes = document.getElementById('sound-yes');
+    const soundNo = document.getElementById('sound-no');
+    let soundAllowed = false;
+    // Show popup on first load if sound permission not set
+    if (soundPopup && soundYes && soundNo) {
+        soundPopup.style.display = 'flex';
+        soundYes.focus();
+        soundYes.addEventListener('click', () => {
+            soundAllowed = true;
+            soundPopup.style.display = 'none';
+            // Play sound
+            const audio = new Audio("mixkit-calm-thunderstorm-in-the-jungle-2415.wav");
+            audio.loop = true;
+            audio.play();
+        });
+        soundNo.addEventListener('click', () => {
+            soundAllowed = false;
+            soundPopup.style.display = 'none';
+        });
+        // Keyboard accessibility: Enter/Arrow keys
+        soundPopup.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                if (document.activeElement === soundYes) {
+                    soundNo.focus();
+                } else {
+                    soundYes.focus();
+                }
+            } else if (e.key === 'Enter') {
+                document.activeElement.click();
+            }
+        });
+    }
+});
+
+// --- Command history state ---
+let commandHistory = [];
+let historyIndex = -1;
+let tempCurrentInput = '';
+
+// --- Command list for auto-completion ---
+const COMMAND_LIST = [
+    'about', 'skills', 'experience', 'projects', 'achievements', 'contact',
+    'help', 'cls', 'clear', 'exit', 'reload', 'linkedin', 'github', 'leetcode',
+    'codechef', 'gfg', 'geeksforgeeks', 'linktree', 'sudo rm -rf'
+];
+let tabMatches = [];
+let tabIndex = 0;
+let lastTabInput = '';
+
+container.addEventListener('keydown', (e) => {
+    const eventTarget = e.target;
+    if (eventTarget.className === 'command') {
+        // --- Tab auto-completion logic ---
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            const inputVal = eventTarget.value.trim().toLowerCase();
+            // If new input or not cycling, find matches
+            if (inputVal !== lastTabInput) {
+                tabMatches = COMMAND_LIST.filter(cmd => cmd.startsWith(inputVal) && inputVal.length > 0);
+                tabIndex = 0;
+                lastTabInput = inputVal;
+            }
+            if (tabMatches.length > 0) {
+                eventTarget.value = tabMatches[tabIndex];
+                tabIndex = (tabIndex + 1) % tabMatches.length;
+            }
+            return;
+        }
+        // Reset tab completion state on other keys (except Shift, Ctrl, Alt, etc.)
+        if (!['Shift','Control','Alt','Meta','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','PageUp','PageDown','CapsLock','Tab'].includes(e.key)) {
+            tabMatches = [];
+            tabIndex = 0;
+            lastTabInput = '';
+        }
+        // Only handle history navigation if input is focused
+        if (["ArrowUp", "ArrowDown", "PageUp", "PageDown"].includes(e.key)) {
+            if (commandHistory.length === 0) return;
+            if (historyIndex === -1) tempCurrentInput = eventTarget.value;
+            if (e.key === "ArrowUp" || e.key === "PageUp") {
+                e.preventDefault();
+                if (historyIndex < commandHistory.length - 1) {
+                    historyIndex++;
+                    eventTarget.value = commandHistory[commandHistory.length - 1 - historyIndex];
+                }
+            } else if (e.key === "ArrowDown" || e.key === "PageDown") {
+                e.preventDefault();
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    eventTarget.value = commandHistory[commandHistory.length - 1 - historyIndex];
+                } else if (historyIndex === 0) {
+                    historyIndex = -1;
+                    eventTarget.value = tempCurrentInput;
+                }
+            }
+        }
+    }
 });
 
 container.addEventListener('keyup', (e) => {
@@ -53,6 +165,13 @@ container.addEventListener('keyup', (e) => {
     if (eventTarget.className === 'command' && e.key === 'Enter') {
         eventTarget.disabled = true;
         const input_value = eventTarget.value.toString().toLowerCase();
+        // --- Push to command history if not empty or whitespace ---
+        if (input_value && !/^\s*$/.test(input_value)) {
+            commandHistory.push(eventTarget.value);
+        }
+        historyIndex = -1;
+        tempCurrentInput = '';
+
         switch (input_value) {
             case 'reload':
                 window.location.reload();

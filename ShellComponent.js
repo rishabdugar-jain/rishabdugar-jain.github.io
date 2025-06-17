@@ -26,7 +26,7 @@ export default class ShellComponent {
         const shellTitle = document.createElement("label");
         shellTitle.classList.add("title");
         shellTitle.htmlFor = "command-input";
-        shellTitle.innerHTML = `\n        <span style=\"color: #f5084f;\"><span class=\"arrow-error\">✗</span> user</span>@rishabdugar $  `;
+        shellTitle.innerHTML = `\n        <span style=\"color: #f5084f;\"><span style=\"color:#64f105;\">⚜️</span> user</span>@rishabdugar $  `;
         const shellInput = document.createElement("input");
         shellInput.id = "command-input";
         shellInput.classList.add("command");

@@ -46,13 +46,15 @@
         <div class="message">
           <p style="font-family: 'UnifrakturCook', monospace; line-height: 1.5;">
             <span style="font-size: 1.1em;">
-              Namaste — you’ve stepped into the ChronoShell of Rishab Dugar
-            </span><br /><br />
-            <em style="color: #a0d8ef;">“Architect of Code | Forged in a Past That Never Rusts”</em><br /><br />
-            <span style="color:#27c93f;">Initializing Portfolio v2.0…</span> <span style="color: #27c93f;">[✔]</span><br /><br />
-            Session UUID: <span class="session-userid"></span><br /><br />
+              Namaste — you’ve stepped into my ChronoShell
+            </span><br />
+            <em style="color: #a0d8ef;">“Architect of Code | Forged in a Past That Never Rusts”</em><br />
+            <span style="color:#27c93f;">Initializing Portfolio…</span> <span style="color: #27c93f;">[✔]</span><br />
+            <div style="display:flex;justify-content:center;align-items:center;width:100%;margin:0.5em 0 1.2em 0;">
+              <img src="ascii art.png" alt="ASCII Art" style="width:75%;max-width:450px;min-width:120px;filter:drop-shadow(0 0 8px #fff8);background:transparent;user-select:none;-webkit-user-drag:none;pointer-events:none;" loading="lazy" draggable="false" />
+            </div>
+            Session UUID: <span class="session-userid"></span><br />
             Type <span id="helper" style="color: #ffd700;">"help"</span> to summon the command list.<br />
-            <small id="case-sense" style="color: #27c93f;">(commands are <strong>case‑insensitive</strong>)</small><br /><br />
           </p>
         </div>
         <div id="insert" class="dynamic-content"></div>
@@ -76,19 +78,21 @@
         href="https://www.linkedin.com/in/rishab-dugar/">@RishabDugar</a>
     </p>
   </div>
-  <button id="allowSoundBtn" class="allow-sound-btn">Allow Sound</button>
-  <script type="text/javascript">
-    const allowSoundBtn = document.getElementById('allowSoundBtn');
-    allowSoundBtn.addEventListener('click', function() {
-      const bgDiv = document.querySelector('.banner-video iframe');
-      if (bgDiv) {
-        let src = bgDiv.getAttribute('src');
-        src = src.replace('mute=1', 'mute=0');
-        bgDiv.setAttribute('src', src);
-      }
-      allowSoundBtn.style.display = 'none';
-    });
-  </script>
+  <!-- Linux-style sound permission popup -->
+  <div id="sound-popup" class="sound-popup" style="display:none;">
+    <div class="sound-popup-inner">
+      <pre class="sound-popup-title">┌──────────────────────────────────────────────┐
+│      Permission Required — Play Sound?      │
+└──────────────────────────────────────────────┘</pre>
+      <div class="sound-popup-body">
+        <span style="color:#64f105;">Allow this portfolio to play sound?</span>
+      </div>
+      <div class="sound-popup-actions">
+        <button id="sound-yes" class="sound-btn">[ Yes ]</button>
+        <button id="sound-no" class="sound-btn">[ No ]</button>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

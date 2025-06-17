@@ -12,6 +12,66 @@ body {
     cursor: url('cursor.png') 4 0, pointer;
 }
 
+/* Linux-style sound popup styles */
+.sound-popup {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 22, 41, 0.85);
+    pointer-events: auto;
+}
+.sound-popup-inner {
+    background: #011627;
+    border: 2.5px solid #64f105;
+    border-radius: 8px;
+    box-shadow: 0 0 24px 6px #64f10544;
+    padding: 1.2em 2em 1.5em 2em;
+    min-width: 340px;
+    max-width: 95vw;
+    font-family: 'Fira Mono', 'Consolas', 'monospace';
+    color: #fce283;
+    text-align: center;
+}
+.sound-popup-title {
+    color: #64f105;
+    font-size: 1.08em;
+    margin-bottom: 0.7em;
+    font-family: 'Fira Mono', 'Consolas', 'monospace';
+    letter-spacing: 0.04em;
+}
+.sound-popup-body {
+    color: #64f105;
+    font-size: 1.08em;
+    margin-bottom: 1.1em;
+    font-family: inherit;
+}
+.sound-popup-actions {
+    display: flex;
+    gap: 1.4em;
+    justify-content: center;
+}
+.sound-btn {
+    background: #222;
+    color: #64f105;
+    border: 2px solid #64f105;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1em;
+    padding: 0.35em 1.2em;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s, border 0.18s;
+    outline: none;
+}
+.sound-btn:hover, .sound-btn:focus {
+    background: #64f105;
+    color: #011627;
+    border-color: #fce283;
+}
+
+
 
 .container {
     align-items: center;
@@ -68,7 +128,7 @@ body {
     flex: 1 1 auto;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 1rem 1.2rem 2.4rem 1.2rem; /* extra bottom padding for footer */
+    padding: 0rem 1.2rem 1.2rem 1.2rem; /* extra bottom padding for footer */
     box-sizing: border-box;
     background: #011627;
     border-bottom-left-radius: 10px;

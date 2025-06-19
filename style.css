@@ -83,7 +83,7 @@ body {
   font-size: 1.03em;
   margin: 0.4em 0 0.7em 1.2em;
   opacity: 0;
-  transition: opacity 0.6s;
+  transition: opacity 0.7s;
   white-space: pre;
   line-height: 1.5;
 }
@@ -146,12 +146,11 @@ body {
   text-shadow: 0 1px 5px #0006;
 }
 .session-value {
-  color: #00e0ff;
+  color: #27c93f;
   font-size: var(--terminal-font-size-sm);
   font-family: inherit;
   font-weight: 700;
   letter-spacing: 0.04em;
-  text-shadow: 0 1px 8px #0ff4;
   user-select: all;
   padding-left: 0.3em;
 }

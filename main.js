@@ -44,7 +44,75 @@ const sessionId = helper_module.userIdGenerator();
 window.addEventListener('DOMContentLoaded', () => {
     maximizeBox.classList.add('flip');
     userid.render(sessionId);
-    shell.render();
+
+    // --- Intro typing and spinner animation ---
+    const typingEl = document.querySelector('.intro-typing');
+    const spinnerEl = document.querySelector('.intro-spinner');
+    const introRest = document.querySelector('.intro-rest');
+    const runShellAndRest = () => {
+        // Show a CLI-style "ready" message before revealing the rest
+        let readyMsg = document.createElement('div');
+        readyMsg.className = 'intro-ready';
+        readyMsg.textContent = 'Good to go! Portfolio ready. Try out the first command!';
+        readyMsg.style.opacity = 0;
+        typingEl.parentNode.parentNode.insertBefore(readyMsg, typingEl.parentNode.nextSibling);
+        setTimeout(() => {
+            readyMsg.style.transition = 'opacity 0.6s';
+            readyMsg.style.opacity = 1;
+            setTimeout(() => {
+                if (introRest) {
+                    introRest.style.display = 'block';
+                    introRest.style.opacity = 1;
+                }
+                shell.render();
+            }, 900);
+        }, 400);
+    };
+    if (typingEl && spinnerEl && introRest) {
+        const text = 'Initializing Portfolio…';
+        let idx = 0;
+        function typeNext() {
+            typingEl.innerHTML = '<span style="color:#27c93f">' + text.slice(0, idx) + '</span>';
+            if (idx < text.length) {
+                idx++;
+                setTimeout(typeNext, 55);
+            } else {
+                runSpinner();
+            }
+        }
+        typeNext();
+        function runSpinner() {
+            const spinnerChars = ['|', '/', '-', '\\'];
+            let spinIdx = 0;
+            let spinCount = 0;
+            spinnerEl.style.color = '#27c93f';
+            spinnerEl.style.display = 'inline-block';
+            spinnerEl.style.marginLeft = '0.5em';
+            spinnerEl.style.fontWeight = 'bold';
+            spinnerEl.style.fontFamily = 'monospace';
+            spinnerEl.style.fontSize = 'inherit';
+            const interval = setInterval(() => {
+                spinnerEl.textContent = spinnerChars[spinIdx % spinnerChars.length];
+                spinIdx++;
+                spinCount++;
+                if (spinCount > 32) { // ~2.5 seconds
+                    clearInterval(interval);
+                    spinnerEl.textContent = '✔';
+                    spinnerEl.style.color = '#27c93f';
+                    setTimeout(() => {
+                        // Hide the intro-init (typing + spinner) after a short delay
+                        const introInit = typingEl.closest('.intro-init');
+                        if (introInit) introInit.style.display = 'none';
+                        runShellAndRest();
+                    }, 500);
+                }
+            }, 70);
+        }
+    } else {
+        // fallback if intro elements not found
+        shell.render();
+    }
+
     // Disable right-click on terminal window
     const terminal = document.getElementById('terminal');
     if (terminal) {

@@ -11,7 +11,7 @@
     content="Rishab Dugar - Software Developer and Gen AI Practitioner. Explore my projects, skills, and experience." />
   <title>Rishab Dugar | Portfolio</title>
   <link href="https://fonts.cdnfonts.com/css/cascadia-mono" rel="stylesheet" />
-  <link rel="shortcut icon" href="diamond.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="diamond-1.gif" type="image/x-icon" />
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
   <link rel="stylesheet" href="style.css" />
@@ -44,18 +44,20 @@
       </div>
       <div class="terminal-body">
         <div class="message">
-          <p style="font-family: 'UnifrakturCook', monospace; line-height: 1.5;">
-            <span style="font-size: 1.1em;">
-              Namaste — you’ve stepped into my ChronoShell
-            </span><br />
-            <em style="color: #a0d8ef;">“Architect of Code | Forged in a Past That Never Rusts”</em><br />
-            <span style="color:#27c93f;">Initializing Portfolio…</span> <span style="color: #27c93f;">[✔]</span><br />
-            <div style="display:flex;justify-content:center;align-items:center;width:100%;margin:0.5em 0 1.2em 0;">
-              <img src="ascii art.png" alt="ASCII Art" style="width:75%;max-width:450px;min-width:120px;filter:drop-shadow(0 0 8px #fff8);background:transparent;user-select:none;-webkit-user-drag:none;pointer-events:none;" loading="lazy" draggable="false" />
-            </div>
-            Session UUID: <span class="session-userid"></span><br />
-            Type <span id="helper" style="color: #ffd700;">"help"</span> to summon the command list.<br />
-          </p>
+          <p class="terminal-intro">
+  <span class="intro-title">
+    Namaste — you’ve stepped into my ChronoShell
+  </span><br />
+  <em class="intro-subtitle">“Architect of Code | Forged in a Past That Never Rusts”</em><br />
+  <span class="intro-init"><span class="intro-typing"></span><span class="intro-spinner"></span></span><br />
+  <div class="intro-rest" style="display:none;">
+    <div class="ascii-art-container">
+      <img src="ascii art.png" alt="ASCII Art" class="ascii-art" loading="lazy" draggable="false" />
+    </div>
+    <span class="session-label">Session UUID:</span> <span class="session-value"><span class="session-userid"></span></span><br />
+    <span class="helper-label">Type <span class="helper-command">"help"</span> to summon the command list.</span><br />
+  </div>
+</p>
         </div>
         <div id="insert" class="dynamic-content"></div>
       </div>
@@ -70,12 +72,12 @@
 
   <script type="module" src="main.js"></script>
 
-  <div class="footer center-footer">
+  <div class="footer centNamaste — you’ve stepped into my ChronoSheller-footer">
     <p>
       Coded with
       <span id="coded-with">&hearts; </span>by
       <a target="_blank" rel="noopener" class="dev-credit"
-        href="https://www.linkedin.com/in/rishab-dugar/">@RishabDugar</a>
+        href="https://www.linkedin.com/in/rishabdugar/">@RishabDugar</a>
     </p>
   </div>
   <!-- Linux-style sound permission popup -->
@@ -88,8 +90,8 @@
         <span style="color:#64f105;">Allow this portfolio to play sound?</span>
       </div>
       <div class="sound-popup-actions">
-        <button id="sound-yes" class="sound-btn">[ Yes ]</button>
-        <button id="sound-no" class="sound-btn">[ No ]</button>
+        <button id="sound-yes" class="sound-btn">[ Yes <✔>]</button>
+        <button id="sound-no" class="sound-btn">[ No <✘> ]</button>
       </div>
     </div>
   </div>
